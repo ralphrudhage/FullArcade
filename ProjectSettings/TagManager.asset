@@ -1,0 +1,168 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - FinishLine
+  - CameraStart
+  - CameraStop
+  - distance
+  - ghostHorse
+  - result
+  - obstacle
+  - boost
+  - carrot
+  - jump
+  - computerObstacle
+  - speed
+  - banner
+  - idleFinishLine
+  - buttonQueue
+  - triggerAction
+  - stopAction
+  - locationInfo
+  - StartPos
+  - StopPos
+  - PlayerScore
+  - SpawnsParent
+  - BannerPanel
+  - ScorePanel
+  - HeatPanel
+  - HeatText
+  - HUD
+  - StartPosition
+  - IdleStartPosition
+  - TimerText
+  - MenuPanel
+  - TitleLogo
+  - TopMenuButton
+  - whip
+  - bird
+  - CarrotSpawnPosition
+  - SurvivalStartPosition
+  - demoHorse
+  - letter
+  - dirt
+  - danceStartPosition
+  - CarrotsCounter
+  - menuObject
+  - animateImage
+  - StartPositionsParent
+  - DistanceGoal
+  - StandingsEntry
+  - ProgressBar
+  - border
+  - LocationEntry
+  - PerksCounter
+  - city
+  - invader
+  - playerBullet
+  - Earth
+  - enemyBullet
+  - wolf
+  - weapon
+  - target
+  - kick
+  - cashRegisterButton
+  - shadow
+  - slime
+  - reversedStart
+  - CameraStartPosition
+  - CameraReversedStartPosition
+  - ReverbFilterEnter
+  - ReverbFilterExit
+  - platformEnter
+  - platformExit
+  - platform
+  - mummified
+  - water
+  - boulderTrigger
+  - boulder
+  - CoinSpawnPosition
+  - coin
+  - altObstacle
+  - trailTrigger
+  - plank
+  - window
+  - hooves
+  - hoovesSoundTrigger
+  - altCoinSpawnPosition
+  - special
+  - bash
+  - wolfAttack
+  - health
+  - TextManager
+  - StopWatch
+  - Accuracy
+  - apm
+  - velocity
+  - HeatLimit
+  - cashRegisterLever
+  - locationButton
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - ArcadeGame
+  - groundLane1
+  - groundLane2
+  - groundLane3
+  - groundLane4
+  - groundLane5
+  - groundLane6
+  - horseLayer1
+  - horseLayer2
+  - horseLayer3
+  - horseLayer4
+  - horseLayer5
+  - horseLayer6
+  - obstacleLayer1
+  - obstacleLayer2
+  - obstacleLayer3
+  - obstacleLayer4
+  - obstacleLayer5
+  - obstacleLayer6
+  - triggerLane1
+  - triggerLane2
+  - triggerLane3
+  - triggerLane4
+  - triggerLane5
+  - triggerLane6
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: LightLayer
+    uniqueID: 1573687547
+    locked: 0
+  - name: Screen
+    uniqueID: 4213402003
+    locked: 0
+  - name: NoLightSprites
+    uniqueID: 2585666921
+    locked: 0
+  - name: Ground
+    uniqueID: 4097735187
+    locked: 0
+  - name: WalkInFront
+    uniqueID: 3420966575
+    locked: 0
+  - name: Collision
+    uniqueID: 919900593
+    locked: 0
+  - name: Player
+    uniqueID: 1663200817
+    locked: 0
+  - name: WalkBehind
+    uniqueID: 627396909
+    locked: 0
+  - name: Decor
+    uniqueID: 2462127993
+    locked: 0
+  m_RenderingLayers:
+  - Default
