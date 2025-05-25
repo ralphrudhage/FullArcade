@@ -32,9 +32,19 @@ public class ArcadeManager : BaseManager
         BindDirectionalInput(controls.Arcade.Right, value => isRightHeld = value);
         BindDirectionalInput(controls.Arcade.Left, value => isLeftHeld = value);
 
-        BindButtonInput(controls.Arcade.Green, value => isButton1Pressed = value);
-        BindButtonInput(controls.Arcade.Blue, value => isButton2Pressed = value);
+        //BindButtonInput(controls.Arcade.Green, value => isButton1Pressed = value);
+        //BindButtonInput(controls.Arcade.Blue, value => isButton2Pressed = value);
+        
+        BindButtonInput(controls.Arcade.Green, OnGreenButtonPress);
+        BindButtonInput(controls.Arcade.Blue, OnBlueButtonPress);
+
     }
+    
+    private void BindButtonInput(InputAction action, System.Action onPress)
+    {
+        action.started += ctx => onPress();
+    }
+
 
     private void OnEnable()
     {
@@ -63,7 +73,7 @@ public class ArcadeManager : BaseManager
         UpdateJoystickVisual();
         UpdateButtonVisuals();
         HandleDirectionalInput();
-        HandleButtonInput();
+        // HandleButtonInput();
     }
 
     private void UpdateJoystickVisual()
@@ -149,7 +159,10 @@ public class ArcadeManager : BaseManager
     private void HandleDownRight() => Debug.Log("Moving Down-Right");
     private void HandleDownLeft() => Debug.Log("Moving Down-Left");
     private void HandleUp() => Debug.Log("Moving Up");
-    private void HandleDown() => grizzly.FaceFront();
+    private void HandleDown()
+    {
+        grizzly.FaceFront();
+    }
 
     private void HandleLeft()
     {
@@ -164,6 +177,13 @@ public class ArcadeManager : BaseManager
     }
 
     // Button actions
-    private void OnGreenButtonPress() => Debug.Log("Green Button Action");
-    private void OnBlueButtonPress() => Debug.Log("Blue Button Action");
+    private void OnGreenButtonPress()
+    {
+        grizzly.InitShrugging();
+    }
+
+    private void OnBlueButtonPress()
+    {
+        grizzly.Shrug();
+    }
 }

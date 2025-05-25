@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a7af55300b7d34285900e762f3b97394
+guid: d230d8fd37a474366848389b95bbf3e7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6180805816873540705
-    second: grizzly_0
+      213: 9053752080972160616
+    second: zerchershrugs_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grizzly_0
+      name: zerchershrugs_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 76
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,20 +115,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16c5a64a422a6c550800000000000000
-      internalID: 6180805816873540705
+      spriteID: 86e9cce7c8365ad70800000000000000
+      internalID: 9053752080972160616
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grizzly_1
+      name: zerchershrugs_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 76
         y: 0
-        width: 32
-        height: 32
+        width: 76
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0446fb31e91744f3a4ee511e372c0f2
-      internalID: 126147215
+      spriteID: 0ebcfdf67e4e74375b8b5e5e3af37230
+      internalID: 1653791669
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grizzly_2
+      name: zerchershrugs_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 152
         y: 0
-        width: 32
-        height: 32
+        width: 76
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eee0c80bd3412490f9d4622b8a0fd551
-      internalID: -711147816
+      spriteID: 771eed4d2f53f4f99b7773d430a0079e
+      internalID: -2023785105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grizzly_3
+      name: zerchershrugs_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 228
         y: 0
-        width: 32
-        height: 32
+        width: 76
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,20 +181,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1dc49d9ebac64be0b56c6df6db75b0d
-      internalID: 869628062
+      spriteID: 5ef97eaa4d4d54add94315fb48f0e336
+      internalID: -1939063816
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grizzly_4
+      name: zerchershrugs_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 304
         y: 0
-        width: 32
-        height: 32
+        width: 76
+        height: 39
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,96 +203,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3134d77339852402fbe701210f3c31eb
-      internalID: -683779489
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grizzly_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc6b1eda4129a46acaa0ef7691987904
-      internalID: 232518082
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grizzly_6
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ea6d8d1a7b2874ec49393baa541b9199
-      internalID: 1488890720
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grizzly_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2b835579ba42c49f291d35c0f3ccf4a6
-      internalID: -823960180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: grizzly_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 26dad801331ea4e4d8c6c0ae209bb2b6
-      internalID: 562194394
+      spriteID: 6875380ad6e4d410dabb2219d3c5461c
+      internalID: 1645223775
       vertices: []
       indices: 
       edges: []
@@ -301,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 29786ad00cb35416297c6f768f1ff625
     internalID: 0
     vertices: []
     indices: 
@@ -311,15 +223,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grizzly_0: 6180805816873540705
-      grizzly_1: 126147215
-      grizzly_2: -711147816
-      grizzly_3: 869628062
-      grizzly_4: -683779489
-      grizzly_5: 232518082
-      grizzly_6: 1488890720
-      grizzly_7: -823960180
-      grizzly_8: 562194394
+      zerchershrugs_0: 9053752080972160616
+      zerchershrugs_1: 1653791669
+      zerchershrugs_2: -2023785105
+      zerchershrugs_3: -1939063816
+      zerchershrugs_4: 1645223775
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
