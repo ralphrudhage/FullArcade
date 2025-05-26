@@ -22,6 +22,7 @@ public class ArcadeManager : BaseManager
 
     private PlayerControls controls;
     private Grizzly grizzly;
+    private bool sledPull;
 
     private void Awake()
     {
@@ -154,7 +155,14 @@ public class ArcadeManager : BaseManager
     private void HandleUpLeft() => Debug.Log("Moving Up-Left");
     private void HandleDownRight() => Debug.Log("Moving Down-Right");
     private void HandleDownLeft() => Debug.Log("Moving Down-Left");
-    private void HandleUp() => Debug.Log("Moving Up");
+    
+    private void HandleUp() {
+        if (!sledPull)
+        {
+            sledPull = true;
+            grizzly.SledPullInit();
+        }
+    }
 
     private void HandleDown()
     {

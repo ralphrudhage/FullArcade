@@ -7,6 +7,7 @@ public class Grizzly : MonoBehaviour
     [SerializeField] private AudioClip walkSound;
     [SerializeField] private AudioClip shrugSound;
     [SerializeField] Animator zercherAnimator;
+    [SerializeField] Animator sledpullAnimator;
 
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
@@ -154,5 +155,13 @@ public class Grizzly : MonoBehaviour
     {
         audioSource.PlayOneShot(facePalm);
         animator.SetTrigger("facepalm");
+    }
+
+    public void SledPullInit()
+    {
+        audioSource.PlayOneShot(initShrug);
+        spriteRenderer.enabled = false;
+        playerEnabled = false;
+        sledpullAnimator.SetTrigger("init");
     }
 }

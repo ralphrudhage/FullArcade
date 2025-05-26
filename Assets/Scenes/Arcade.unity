@@ -231,8 +231,9 @@ GameObject:
   m_Component:
   - component: {fileID: 122006996}
   - component: {fileID: 122006995}
+  - component: {fileID: 122006997}
   m_Layer: 0
-  m_Name: sledpull_0
+  m_Name: SledPullAnimator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -301,13 +302,35 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 122006994}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.21, y: -0.79, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 364035747}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &122006997
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122006994}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6930d7ef748994fe59ab9f12253b34d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &137802717
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +720,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358575548}
   m_CullTransparentMesh: 1
+--- !u!1 &364035746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364035747}
+  m_Layer: 0
+  m_Name: Sledpull
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &364035747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364035746}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.21, y: -0.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 122006996}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &540700936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1134,7 @@ MonoBehaviour:
   walkSound: {fileID: 8300000, guid: 2be8780d2569648c59470a55c894fe23, type: 3}
   shrugSound: {fileID: 8300000, guid: bb6757bb9d98a4399800c3e8e79476b7, type: 3}
   zercherAnimator: {fileID: 1632843644}
+  sledpullAnimator: {fileID: 122006997}
   moveSpeed: 2
 --- !u!82 &862339620
 AudioSource:
@@ -4256,5 +4312,5 @@ SceneRoots:
   - {fileID: 1632843643}
   - {fileID: 197480223}
   - {fileID: 250602017}
-  - {fileID: 122006996}
+  - {fileID: 364035747}
   - {fileID: 1966510488}
