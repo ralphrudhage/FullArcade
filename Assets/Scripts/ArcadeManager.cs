@@ -166,13 +166,27 @@ public class ArcadeManager : BaseManager
 
     private void HandleDown()
     {
+        if (sledPull)
+        {
+            grizzly.ResetSledPull();
+            sledPull = false;
+            
+        }
         grizzly.FaceFront();
     }
 
     private void HandleLeft()
     {
-        grizzly.FaceLeft();
-        grizzly.Walk();
+        if (sledPull)
+        {
+            grizzly.SledPull();
+        }
+        else
+        {
+            grizzly.FaceLeft();
+            grizzly.Walk();
+        }
+
     }
 
     private void HandleRight()

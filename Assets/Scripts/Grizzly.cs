@@ -1,19 +1,24 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Grizzly : MonoBehaviour
 {
+    [SerializeField] private Image powerImage;
     [SerializeField] private AudioClip facePalm;
     [SerializeField] private AudioClip initShrug;
     [SerializeField] private AudioClip walkSound;
     [SerializeField] private AudioClip shrugSound;
     [SerializeField] Animator zercherAnimator;
     [SerializeField] Animator sledpullAnimator;
+    [SerializeField] GameObject sledpull;
 
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool facingRight = false;
     private bool isWalking = false;
+    private bool isPulling = false;
 
     private bool playerEnabled = true;
 
@@ -146,6 +151,7 @@ public class Grizzly : MonoBehaviour
         }
         else
         {
+            powerImage.fillAmount -= 0.05f;
             audioSource.PlayOneShot(shrugSound);
             zercherAnimator.SetTrigger("shrug");
         }
@@ -163,5 +169,52 @@ public class Grizzly : MonoBehaviour
         spriteRenderer.enabled = false;
         playerEnabled = false;
         sledpullAnimator.SetTrigger("init");
+    }
+
+    public void SledPull()
+    {
+        if (isPulling) return;
+        powerImage.fillAmount -= 0.05f;
+        audioSource.PlayOneShot(shrugSound);
+        isPulling = true;
+        sledpullAnimator.SetTrigger("pull");
+    }
+
+    public void MoveSled()
+    {
+        float offset = -0.2f;
+        Vector3 targetPosition = transform.position + new Vector3(offset, 0f, 0f);
+        Vector3 sledTargetPosition = sledpull.transform.position + new Vector3(offset, 0f, 0f);
+
+        StartCoroutine(SmoothMove(transform, targetPosition, 0.25f));
+        StartCoroutine(SmoothMove(sledpull.transform, sledTargetPosition, 0.25f));
+        StartCoroutine(DelaySledPull());
+    }
+
+    private IEnumerator SmoothMove(Transform obj, Vector3 target, float duration)
+    {
+        Vector3 start = obj.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            obj.position = Vector3.Lerp(start, target, elapsed / duration);
+            yield return null;
+        }
+
+        obj.position = target; // snap to final position in case of rounding errors
+    }
+
+    private IEnumerator DelaySledPull()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isPulling = false;
+    }
+
+    public void ResetSledPull()
+    {
+        isPulling = false;
+        sledpullAnimator.SetTrigger("empty");
     }
 }
