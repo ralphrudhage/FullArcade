@@ -27,24 +27,27 @@ public class ArcadeManager : BaseManager
     {
         controls = new PlayerControls();
 
+        // Directional input
         BindDirectionalInput(controls.Arcade.Up, value => isUpHeld = value);
         BindDirectionalInput(controls.Arcade.Down, value => isDownHeld = value);
         BindDirectionalInput(controls.Arcade.Right, value => isRightHeld = value);
         BindDirectionalInput(controls.Arcade.Left, value => isLeftHeld = value);
 
-        //BindButtonInput(controls.Arcade.Green, value => isButton1Pressed = value);
-        //BindButtonInput(controls.Arcade.Blue, value => isButton2Pressed = value);
-        
-        BindButtonInput(controls.Arcade.Green, OnGreenButtonPress);
-        BindButtonInput(controls.Arcade.Blue, OnBlueButtonPress);
+        // Button visuals
+        BindButtonInput(controls.Arcade.Green, value => isButton1Pressed = value);
+        BindButtonInput(controls.Arcade.Blue, value => isButton2Pressed = value);
 
+        // Button actions (trigger once on press)
+        controls.Arcade.Green.started += ctx => OnGreenButtonPress();
+        controls.Arcade.Blue.started += ctx => OnBlueButtonPress();
     }
-    
-    private void BindButtonInput(InputAction action, System.Action onPress)
+
+
+    private void BindButtonInput(InputAction action, System.Action<bool> setter)
     {
-        action.started += ctx => onPress();
+        action.performed += ctx => setter(true);
+        action.canceled += ctx => setter(false);
     }
-
 
     private void OnEnable()
     {
@@ -62,18 +65,11 @@ public class ArcadeManager : BaseManager
         action.canceled += ctx => setter(false);
     }
 
-    private void BindButtonInput(InputAction action, System.Action<bool> setter)
-    {
-        action.performed += ctx => { setter(true); };
-        action.canceled += ctx => setter(false);
-    }
-
     private void Update()
     {
         UpdateJoystickVisual();
         UpdateButtonVisuals();
         HandleDirectionalInput();
-        // HandleButtonInput();
     }
 
     private void UpdateJoystickVisual()
@@ -159,6 +155,7 @@ public class ArcadeManager : BaseManager
     private void HandleDownRight() => Debug.Log("Moving Down-Right");
     private void HandleDownLeft() => Debug.Log("Moving Down-Left");
     private void HandleUp() => Debug.Log("Moving Up");
+
     private void HandleDown()
     {
         grizzly.FaceFront();
@@ -179,11 +176,13 @@ public class ArcadeManager : BaseManager
     // Button actions
     private void OnGreenButtonPress()
     {
+        isButton1Pressed = true;
         grizzly.InitShrugging();
     }
 
     private void OnBlueButtonPress()
     {
+        isButton2Pressed = true;
         grizzly.Shrug();
     }
 }
