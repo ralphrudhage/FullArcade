@@ -16,16 +16,36 @@ public class Grizzly : MonoBehaviour
     private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private bool facingRight = false;
-    private bool isWalking = false;
-    private bool isPulling = false;
+    private bool facingRight;
+    private bool isWalking;
+    private bool isPulling;
+    private bool isMoving;
 
     private bool playerEnabled = true;
 
     [SerializeField] private float moveSpeed = 2f;
 
-    private float stepTimer = 0f;
-    private float stepInterval = 0.4f; // Adjust based on speed / step rhythm
+    private float stepTimer;
+    private const float stepInterval = 0.2f;
+
+    private PlayerControls controls;
+    private PlayerControls.ArcadeActions InputActions { get; set; }
+
+    public bool IsButton1Held => InputActions.Button1.IsPressed();
+    public bool IsButton2Held => InputActions.Button2.IsPressed();
+
+    public bool IsUp => InputActions.Up.IsPressed();
+    public bool IsDown => InputActions.Down.IsPressed();
+    public bool IsLeft => InputActions.Left.IsPressed();
+    public bool IsRight => InputActions.Right.IsPressed();
+
+
+    private void Awake()
+    {
+        controls = new PlayerControls();
+        InputActions = controls.Arcade;
+        controls.Enable();
+    }
 
     private void OnEnable()
     {
@@ -34,16 +54,35 @@ public class Grizzly : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+
     private void Update()
     {
         if (!playerEnabled) return;
 
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        HandleMovement();
+        HandleInputActions();
+        HandleStepSound();
+    }
 
-        if (moveInput != 0)
+    private void HandleMovement()
+    {
+        if (!playerEnabled || isPulling) return;
+
+        float moveInput = InputActions.Right.IsPressed() ? 1 :
+            InputActions.Left.IsPressed() ? -1 : 0;
+
+        bool wasMoving = isMoving;
+        isMoving = moveInput != 0;
+
+        if (isMoving)
         {
             transform.position += new Vector3(moveInput * moveSpeed * Time.deltaTime, 0f, 0f);
-            Walk();
+
+            if (!isWalking)
+            {
+                animator.SetTrigger("walk");
+                isWalking = true;
+            }
 
             if (moveInput > 0)
                 FaceRight();
@@ -52,11 +91,39 @@ public class Grizzly : MonoBehaviour
         }
         else
         {
-            SideIdle();
+            if (wasMoving) // just stopped moving
+            {
+                SideIdle(); // resets `isWalking` and `stepTimer`
+            }
         }
     }
 
-    public void Walk()
+    private void HandleInputActions()
+    {
+        if (InputActions.Up.triggered && !isPulling)
+        {
+            SledPullInit();
+        }
+
+        if (InputActions.Down.triggered)
+        {
+            ResetSledPull();
+            FaceFront();
+        }
+
+        if (InputActions.Button1.triggered)
+        {
+            InitShrugging();
+        }
+
+        if (InputActions.Button2.triggered)
+        {
+            Shrug();
+        }
+    }
+
+
+    private void Walk()
     {
         if (!playerEnabled) return;
 
@@ -79,20 +146,28 @@ public class Grizzly : MonoBehaviour
         }
     }
 
-
-    public void SideIdle()
+    private void HandleStepSound()
     {
-        if (!playerEnabled) return;
+        if (!isWalking || !isMoving || walkSound == null) return;
 
-        if (isWalking)
+        stepTimer += Time.deltaTime;
+        if (stepTimer >= stepInterval)
         {
-            animator.SetTrigger("idleside");
-            isWalking = false;
             stepTimer = 0f;
+            audioSource.PlayOneShot(walkSound);
         }
     }
 
-    public void FaceLeft()
+    private void SideIdle()
+    {
+        if (!isWalking) return;
+
+        animator.SetTrigger("idleside");
+        isWalking = false;
+        stepTimer = 0f;
+    }
+    
+    private void FaceLeft()
     {
         if (!playerEnabled) return;
 
@@ -103,7 +178,7 @@ public class Grizzly : MonoBehaviour
         }
     }
 
-    public void FaceFront()
+    private void FaceFront()
     {
         if (!playerEnabled)
         {
@@ -117,7 +192,7 @@ public class Grizzly : MonoBehaviour
         animator.SetTrigger("idlefront");
     }
 
-    public void FaceRight()
+    private void FaceRight()
     {
         if (!playerEnabled) return;
 
@@ -135,7 +210,7 @@ public class Grizzly : MonoBehaviour
         transform.localScale = flipped;
     }
 
-    public void InitShrugging()
+    private void InitShrugging()
     {
         audioSource.PlayOneShot(initShrug);
         spriteRenderer.enabled = false;
@@ -143,7 +218,7 @@ public class Grizzly : MonoBehaviour
         zercherAnimator.SetTrigger("init");
     }
 
-    public void Shrug()
+    private void Shrug()
     {
         if (playerEnabled)
         {
@@ -157,13 +232,13 @@ public class Grizzly : MonoBehaviour
         }
     }
 
-    public void FacePalm()
+    private void FacePalm()
     {
         audioSource.PlayOneShot(facePalm);
         animator.SetTrigger("facepalm");
     }
 
-    public void SledPullInit()
+    private void SledPullInit()
     {
         audioSource.PlayOneShot(initShrug);
         spriteRenderer.enabled = false;
@@ -212,7 +287,7 @@ public class Grizzly : MonoBehaviour
         isPulling = false;
     }
 
-    public void ResetSledPull()
+    private void ResetSledPull()
     {
         isPulling = false;
         sledpullAnimator.SetTrigger("empty");
