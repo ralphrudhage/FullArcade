@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: bc81e89bf809b400b8c5536163c21bfc
+guid: dfec6c5f8cf024bb0a2bcb4b77d89bca
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3681129026827463107
-    second: grizzlyjoy_0
+      213: -1650564441284688957
+    second: ChatGPT Image 28 maj 2025 19_46_37-Photoroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grizzlyjoy_0
+      name: ChatGPT Image 28 maj 2025 19_46_37-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 36
-        height: 51
+        x: 79
+        y: 27
+        width: 695
+        height: 1218
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c92e60b85ff51330800000000000000
-      internalID: 3681129026827463107
+      spriteID: 3c3c55eb2640819e0800000000000000
+      internalID: -1650564441284688957
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChatGPT Image 28 maj 2025 19_46_37-Photoroom_0: -1650564441284688957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
