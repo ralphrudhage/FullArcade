@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,15 +6,10 @@ using UnityEngine.InputSystem;
 public class ArcadeManager : BaseManager
 {
     [SerializeField] private List<Sprite> joystickSprites;
-    [SerializeField] private List<Sprite> greenShoeButtonSprites;
-    [SerializeField] private List<Sprite> blueShoeButtonSprites;
+    [SerializeField] private List<Sprite> buttonSprites;
     [SerializeField] private Image joystick;
-    [SerializeField] private Image greenShoeButton;
-    [SerializeField] private Image blueShoeButton;
-    [SerializeField] private Image redShoeButton;
-    [SerializeField] private Image whiteShoeButton;
-    [SerializeField] private Animator showArcadeAnimator;
-    [SerializeField] private Animator transitionAnimator;
+    [SerializeField] private Image button1;
+    [SerializeField] private Image button2;
 
     private bool isUpHeld, isDownHeld, isRightHeld, isLeftHeld;
     private bool isButton1Pressed, isButton2Pressed;
@@ -35,12 +29,12 @@ public class ArcadeManager : BaseManager
         BindDirectionalInput(controls.Arcade.Left, value => isLeftHeld = value);
 
         // Button visuals
-        BindButtonInput(controls.Arcade.Green, value => isButton1Pressed = value);
-        BindButtonInput(controls.Arcade.Blue, value => isButton2Pressed = value);
+        BindButtonInput(controls.Arcade.Button1, value => isButton1Pressed = value);
+        BindButtonInput(controls.Arcade.Button2, value => isButton2Pressed = value);
 
         // Button actions (trigger once on press)
-        controls.Arcade.Green.started += ctx => OnGreenButtonPress();
-        controls.Arcade.Blue.started += ctx => OnBlueButtonPress();
+        controls.Arcade.Button1.started += ctx => OnButton1Press();
+        controls.Arcade.Button2.started += ctx => OnButton2Press();
     }
 
 
@@ -76,48 +70,21 @@ public class ArcadeManager : BaseManager
     private void UpdateJoystickVisual()
     {
         joystick.sprite = joystickSprites[
-            isUpHeld && isRightHeld ? 2 :
-            isUpHeld && isLeftHeld ? 8 :
-            isDownHeld && isRightHeld ? 4 :
-            isDownHeld && isLeftHeld ? 6 :
-            isUpHeld ? 1 :
-            isRightHeld ? 3 :
-            isDownHeld ? 5 :
-            isLeftHeld ? 7 : 0
+            isUpHeld ? 1 : isDownHeld ? 3 : isRightHeld ? 2 : isLeftHeld ? 4 : 0
         ];
     }
 
     private void UpdateButtonVisuals()
     {
-        greenShoeButton.sprite = greenShoeButtonSprites[isButton1Pressed ? 1 : 0];
-        blueShoeButton.sprite = blueShoeButtonSprites[isButton2Pressed ? 1 : 0];
+        button1.sprite = buttonSprites[isButton1Pressed ? 1 : 0];
+        button2.sprite = buttonSprites[isButton2Pressed ? 1 : 0];
     }
 
     private void HandleDirectionalInput()
     {
         bool moved = false;
-
-        if (isUpHeld && isRightHeld)
-        {
-            HandleUpRight();
-            moved = true;
-        }
-        else if (isUpHeld && isLeftHeld)
-        {
-            HandleUpLeft();
-            moved = true;
-        }
-        else if (isDownHeld && isRightHeld)
-        {
-            HandleDownRight();
-            moved = true;
-        }
-        else if (isDownHeld && isLeftHeld)
-        {
-            HandleDownLeft();
-            moved = true;
-        }
-        else if (isUpHeld)
+        
+        if (isUpHeld)
         {
             HandleUp();
             moved = true;
@@ -143,18 +110,6 @@ public class ArcadeManager : BaseManager
             grizzly.SideIdle();
         }
     }
-
-    private void HandleButtonInput()
-    {
-        if (isButton1Pressed) OnGreenButtonPress();
-        if (isButton2Pressed) OnBlueButtonPress();
-    }
-
-    // Direction actions
-    private void HandleUpRight() => Debug.Log("Moving Up-Right");
-    private void HandleUpLeft() => Debug.Log("Moving Up-Left");
-    private void HandleDownRight() => Debug.Log("Moving Down-Right");
-    private void HandleDownLeft() => Debug.Log("Moving Down-Left");
     
     private void HandleUp() {
         if (!sledPull)
@@ -194,15 +149,14 @@ public class ArcadeManager : BaseManager
         grizzly.FaceRight();
         grizzly.Walk();
     }
-
-    // Button actions
-    private void OnGreenButtonPress()
+    
+    private void OnButton1Press()
     {
         isButton1Pressed = true;
         grizzly.InitShrugging();
     }
 
-    private void OnBlueButtonPress()
+    private void OnButton2Press()
     {
         isButton2Pressed = true;
         grizzly.Shrug();
