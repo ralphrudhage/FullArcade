@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Grizzly : MonoBehaviour
+public class Grizzly : Player
 {
     [SerializeField] private Image powerImage;
     [SerializeField] private AudioClip facePalm;
@@ -13,7 +13,6 @@ public class Grizzly : MonoBehaviour
     [SerializeField] Animator sledpullAnimator;
     [SerializeField] GameObject sledpull;
 
-    private AudioSource audioSource;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private bool facingRight;
@@ -22,38 +21,25 @@ public class Grizzly : MonoBehaviour
     private bool isMoving;
 
     private bool playerEnabled = true;
-    
+
     private float stepTimer;
-    private float moveSpeed = 2f;
+    private const float moveSpeed = 2f;
     private const float stepInterval = 0.2f;
 
-    
-    private ArcadeManager arcadeManager;
-    private PlayerControls controls;
-    private PlayerControls.ArcadeActions InputActions { get; set; }
-
-    private void Awake()
+    protected override void OnEnable()
     {
-        controls = new PlayerControls();
-        InputActions = controls.Arcade;
-        controls.Enable();
-    }
-
-    private void OnEnable()
-    {
-        arcadeManager = FindAnyObjectByType<ArcadeManager>();
+        base.OnEnable();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
     }
 
-
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+        HandleInputActions();
         if (!playerEnabled) return;
 
         HandleMovement();
-        HandleInputActions();
         HandleStepSound();
     }
 
@@ -61,18 +47,6 @@ public class Grizzly : MonoBehaviour
     {
         if (!playerEnabled || isPulling) return;
 
-        if (InputActions.Up.IsPressed())
-            arcadeManager?.SetJoystickDirection("Up");
-        else if (InputActions.Down.IsPressed())
-            arcadeManager?.SetJoystickDirection("Down");
-        else if (InputActions.Left.IsPressed())
-            arcadeManager?.SetJoystickDirection("Left");
-        else if (InputActions.Right.IsPressed())
-            arcadeManager?.SetJoystickDirection("Right");
-        else
-            arcadeManager?.SetJoystickDirection(""); // center
-
-        
         float moveInput = InputActions.Right.IsPressed() ? 1 :
             InputActions.Left.IsPressed() ? -1 : 0;
 
@@ -96,19 +70,15 @@ public class Grizzly : MonoBehaviour
         }
         else
         {
-            if (wasMoving) // just stopped moving
+            if (wasMoving)
             {
-                SideIdle(); // resets `isWalking` and `stepTimer`
+                SideIdle();
             }
         }
     }
 
     private void HandleInputActions()
     {
-        arcadeManager?.SetButtonState(1, InputActions.Button1.IsPressed());
-        arcadeManager?.SetButtonState(2, InputActions.Button2.IsPressed());
-
-        
         if (InputActions.Up.triggered && !isPulling)
         {
             SledPullInit();
@@ -122,17 +92,15 @@ public class Grizzly : MonoBehaviour
 
         if (InputActions.Button1.triggered)
         {
-            Debug.Log("button1");
             InitShrugging();
         }
 
         if (InputActions.Button2.triggered)
         {
-            Debug.Log("button2");
             ShrugOrFacePalm();
         }
     }
-    
+
     private void HandleStepSound()
     {
         if (!isWalking || !isMoving || walkSound == null) return;
@@ -141,7 +109,7 @@ public class Grizzly : MonoBehaviour
         if (stepTimer >= stepInterval)
         {
             stepTimer = 0f;
-            audioSource.PlayOneShot(walkSound);
+            SoundManager.Instance.PlaySound(walkSound);
         }
     }
 
@@ -153,7 +121,7 @@ public class Grizzly : MonoBehaviour
         isWalking = false;
         stepTimer = 0f;
     }
-    
+
     private void FaceLeft()
     {
         if (!playerEnabled) return;
@@ -172,7 +140,7 @@ public class Grizzly : MonoBehaviour
             playerEnabled = true;
             spriteRenderer.enabled = true;
             zercherAnimator.SetTrigger("empty");
-            audioSource.PlayOneShot(initShrug);
+            SoundManager.Instance.PlaySound(initShrug);
         }
 
         isWalking = false;
@@ -199,7 +167,7 @@ public class Grizzly : MonoBehaviour
 
     private void InitShrugging()
     {
-        audioSource.PlayOneShot(initShrug);
+        SoundManager.Instance.PlaySound(initShrug);
         spriteRenderer.enabled = false;
         playerEnabled = false;
         zercherAnimator.SetTrigger("init");
@@ -214,20 +182,20 @@ public class Grizzly : MonoBehaviour
         else
         {
             powerImage.fillAmount -= 0.05f;
-            audioSource.PlayOneShot(shrugSound);
+            SoundManager.Instance.PlaySound(shrugSound);
             zercherAnimator.SetTrigger("shrug");
         }
     }
 
     private void FacePalm()
     {
-        audioSource.PlayOneShot(facePalm);
+        SoundManager.Instance.PlaySound(facePalm);
         animator.SetTrigger("facepalm");
     }
 
     private void SledPullInit()
     {
-        audioSource.PlayOneShot(initShrug);
+        SoundManager.Instance.PlaySound(initShrug);
         spriteRenderer.enabled = false;
         playerEnabled = false;
         sledpullAnimator.SetTrigger("init");
@@ -237,7 +205,7 @@ public class Grizzly : MonoBehaviour
     {
         if (isPulling) return;
         powerImage.fillAmount -= 0.05f;
-        audioSource.PlayOneShot(shrugSound);
+        SoundManager.Instance.PlaySound(shrugSound);
         isPulling = true;
         sledpullAnimator.SetTrigger("pull");
     }
