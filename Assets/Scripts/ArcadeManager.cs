@@ -10,36 +10,30 @@ public class ArcadeManager : BaseManager
     [SerializeField] private Image button1;
     [SerializeField] private Image button2;
     
-    private Grizzly grizzly;
-    
-    private void OnEnable()
+    public void SetJoystickDirection(string direction)
     {
-        grizzly = FindAnyObjectByType<Grizzly>();
-    }
-    
+        int index = direction switch
+        {
+            "Up" => 1,
+            "Right" => 2,
+            "Down" => 3,
+            "Left" => 4,
+            _ => 0
+        };
 
-    private void Update()
-    {
-        if (grizzly == null) return;
-
-        UpdateJoystickVisual();
-        UpdateButtonVisuals();
+        joystick.sprite = joystickSprites[index];
     }
 
-    private void UpdateJoystickVisual()
+    public void SetButtonState(int buttonIndex, bool pressed)
     {
-        joystick.sprite = joystickSprites[
-            grizzly.IsUp ? 1 :
-            grizzly.IsDown ? 3 :
-            grizzly.IsRight ? 2 :
-            grizzly.IsLeft ? 4 : 0
-        ];
+        switch (buttonIndex)
+        {
+            case 1:
+                button1.sprite = buttonSprites[pressed ? 1 : 0];
+                break;
+            case 2:
+                button2.sprite = buttonSprites[pressed ? 1 : 0];
+                break;
+        }
     }
-
-    private void UpdateButtonVisuals()
-    {
-        button1.sprite = buttonSprites[grizzly.IsButton1Held ? 1 : 0];
-        button2.sprite = buttonSprites[grizzly.IsButton2Held ? 1 : 0];
-    }
-    
 }
