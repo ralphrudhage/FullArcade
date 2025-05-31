@@ -2,9 +2,18 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] protected AudioClip walkSound;
+    
+    protected Animator animator;
+    protected SpriteRenderer spriteRenderer;
     private ArcadeManager arcadeManager;
     private PlayerControls controls;
     protected PlayerControls.ArcadeActions InputActions { get; set; }
+    
+    protected float stepTimer;
+    protected const float moveSpeed = 2f;
+    protected const float stepInterval = 0.2f;
+    protected bool isMoving;
 
     private void Awake()
     {
@@ -15,6 +24,8 @@ public class Player : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         arcadeManager = FindAnyObjectByType<ArcadeManager>();
     }
 
@@ -38,5 +49,12 @@ public class Player : MonoBehaviour
 
         arcadeManager?.SetButtonState(1, InputActions.Button1.IsPressed());
         arcadeManager?.SetButtonState(2, InputActions.Button2.IsPressed());
+    }
+    
+    protected void FlipDirection()
+    {
+        var flipped = transform.localScale;
+        flipped.x *= -1;
+        transform.localScale = flipped;
     }
 }

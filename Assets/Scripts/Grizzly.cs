@@ -7,32 +7,16 @@ public class Grizzly : Player
     [SerializeField] private Image powerImage;
     [SerializeField] private AudioClip facePalm;
     [SerializeField] private AudioClip initShrug;
-    [SerializeField] private AudioClip walkSound;
     [SerializeField] private AudioClip shrugSound;
     [SerializeField] Animator zercherAnimator;
     [SerializeField] Animator sledpullAnimator;
     [SerializeField] GameObject sledpull;
-
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
+    
     private bool facingRight;
     private bool isWalking;
     private bool isPulling;
-    private bool isMoving;
-
     private bool playerEnabled = true;
-
-    private float stepTimer;
-    private const float moveSpeed = 2f;
-    private const float stepInterval = 0.2f;
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-    }
-
+    
     protected override void Update()
     {
         base.Update();
@@ -157,14 +141,7 @@ public class Grizzly : Player
             facingRight = true;
         }
     }
-
-    private void FlipDirection()
-    {
-        Vector3 flipped = transform.localScale;
-        flipped.x *= -1;
-        transform.localScale = flipped;
-    }
-
+    
     private void InitShrugging()
     {
         SoundManager.Instance.PlaySound(initShrug);
