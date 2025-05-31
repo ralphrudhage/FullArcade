@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class ArcadeManager : BaseManager
     [SerializeField] private Image joystick;
     [SerializeField] private Image button1;
     [SerializeField] private Image button2;
-    
+
     public void SetJoystickDirection(string direction)
     {
         int index = direction switch

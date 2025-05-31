@@ -1659,6 +1659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcaa102c8b69542ae95171c3054d1c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arcadeCanvas: {fileID: 1373881530}
 --- !u!1 &1012777577
 GameObject:
   m_ObjectHideFlags: 0
@@ -3967,12 +3968,12 @@ GameObject:
   - component: {fileID: 1373881533}
   - component: {fileID: 1373881532}
   m_Layer: 5
-  m_Name: BlackFadeScreen
+  m_Name: IntroScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1373881531
 RectTransform:
   m_ObjectHideFlags: 0

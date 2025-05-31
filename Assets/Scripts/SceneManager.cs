@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
+    [SerializeField] private GameObject arcadeCanvas;
     private NarrativeWriter narrativeWriter;
     private ArcadeSceneFader arcadeSceneFader;
 
     private void OnEnable()
     {
+        arcadeCanvas.SetActive(true);
         arcadeSceneFader = FindAnyObjectByType<ArcadeSceneFader>();
         narrativeWriter = FindAnyObjectByType<NarrativeWriter>();
     }
@@ -16,7 +18,6 @@ public class SceneManager : MonoBehaviour
     private void Start()
     {
         Act1CutScene();
-        // Act1GamePlay(Vector3.zero);
     }
 
     private void Act1CutScene()
@@ -27,15 +28,7 @@ public class SceneManager : MonoBehaviour
             () => narrativeWriter.TextRow1("Meanwhile", "", 3f, GameUtils.lightYellow)));
         StartCoroutine(DelayedAction(8f, () => arcadeSceneFader.FadeIn()));
     }
-
-    public void SkipCutScene()
-    {
-        narrativeWriter.Skip();
-        StopAllCoroutines();
-        
-        Act1GamePlay();
-    }
-
+    
     private void Act1GamePlay()
     {
     }
