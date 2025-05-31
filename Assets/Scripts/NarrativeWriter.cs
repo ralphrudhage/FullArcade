@@ -1,9 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NarrativeWriter : MonoBehaviour
 {
+    [SerializeField] private List<AudioClip> typeSound;
     [SerializeField] private Text centeredRow;
     [SerializeField] private Text centeredRow2;
 
@@ -21,7 +23,7 @@ public class NarrativeWriter : MonoBehaviour
 
     private IEnumerator TypeWriter(string message1, string message2, float duration, Color color)
     {
-        float writeSpeed = 10f;
+        float writeSpeed = 6f;
 
         // Row 1
         yield return StartCoroutine(TypeOutText(centeredRow, message1, writeSpeed, color));
@@ -44,6 +46,8 @@ public class NarrativeWriter : MonoBehaviour
     {
         float t = 0f;
         int charIndex = 0;
+        int lastCharIndex = -1;
+
         textComponent.text = "";
         textComponent.color = color;
 
@@ -52,13 +56,21 @@ public class NarrativeWriter : MonoBehaviour
             t += Time.deltaTime * speed;
             charIndex = Mathf.FloorToInt(t);
             charIndex = Mathf.Clamp(charIndex, 0, message.Length);
-            textComponent.text = message.Substring(0, charIndex);
-            yield return null;
+
+            // Only update text and play sound when a new character is revealed
+            if (charIndex != lastCharIndex)
+            {
+                textComponent.text = message.Substring(0, charIndex);
+                SoundManager.Instance.PlaySound(typeSound[Random.Range(0, typeSound.Count)]);
+                lastCharIndex = charIndex;
+            }
+
+            yield return null; // wait one frame
         }
 
         textComponent.text = message;
     }
-
+    
     public void Skip()
     {
         StopAllCoroutines();

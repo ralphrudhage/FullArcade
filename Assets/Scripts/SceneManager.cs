@@ -23,9 +23,9 @@ public class SceneManager : MonoBehaviour
     {
         arcadeSceneFader.BlackScene();
 
-        StartCoroutine(DelayedAction(0f,
-            () => narrativeWriter.TextRow1("Meanwhile", "", 2f, GameUtils.lightYellow)));
-        StartCoroutine(DelayedAction(3f, () => arcadeSceneFader.FadeIn()));
+        StartCoroutine(DelayedAction(3f,
+            () => narrativeWriter.TextRow1("Meanwhile", "", 3f, GameUtils.lightYellow)));
+        StartCoroutine(DelayedAction(8f, () => arcadeSceneFader.FadeIn()));
     }
 
     public void SkipCutScene()
