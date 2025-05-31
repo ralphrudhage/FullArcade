@@ -15,30 +15,7 @@ public class Jujimufu : Player
     protected override void Update()
     {
         base.Update();
-        HandleMovement();
         HandleInputActions();
-    }
-
-    private void HandleMovement()
-    {
-        float moveInput = GetMoveInput();
-        isMoving = moveInput != 0;
-
-        if (isMoving)
-        {
-            if (!animator.GetBool("walking"))
-            {
-                animator.SetTrigger("walk");
-                animator.SetBool("walking", true);
-            }
-
-            transform.position += new Vector3(moveInput * moveSpeed * Time.deltaTime, 0f, 0f);
-            FaceRight(moveInput > 0);
-        }
-        else
-        {
-            animator.SetBool("walking", false);
-        }
     }
     
     private void HandleInputActions()
