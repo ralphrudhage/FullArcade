@@ -1245,6 +1245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSound: {fileID: 8300000, guid: 2be8780d2569648c59470a55c894fe23, type: 3}
+  horseController: {fileID: 22100000, guid: 791948e26888c48a5a021c8b289b361a, type: 2}
 --- !u!95 &862339619
 Animator:
   serializedVersion: 7

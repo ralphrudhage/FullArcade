@@ -2,6 +2,16 @@ using UnityEngine;
 
 public class Jujimufu : Player
 {
+    [SerializeField] AnimatorOverrideController horseController;
+    
+    private RuntimeAnimatorController defaultController;
+    private bool usingHorseController;
+
+    private void Start()
+    {
+        defaultController = animator.runtimeAnimatorController;
+    }
+
     protected override void Update()
     {
         base.Update();
@@ -50,7 +60,8 @@ public class Jujimufu : Player
 
         if (InputActions.Button2.triggered)
         {
-            Debug.Log("Button2");
+            usingHorseController = !usingHorseController;
+            animator.runtimeAnimatorController = usingHorseController ? horseController : defaultController;
         }
 
         if (InputActions.Button3.triggered)
