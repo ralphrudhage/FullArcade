@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: grizzlybutton_0
+      name: button_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 321
-        height: 207
+        width: 303
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bbfe186120fd49ff95c98c66433a7a0
-      internalID: -447113930
+      spriteID: 390f87799019b40d2a8d54994d08b44c
+      internalID: -12965728
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: grizzlybutton_1
+      name: button_1
       rect:
         serializedVersion: 2
-        x: 321
+        x: 303
         y: 0
-        width: 321
-        height: 207
+        width: 303
+        height: 210
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64e9709fa667a4a91a4a0fe99d4ff8c6
-      internalID: -1720796184
+      spriteID: f04b926b6c8e9446aa6d519b746022f0
+      internalID: 196519208
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      grizzlybutton_0: -447113930
-      grizzlybutton_1: -1720796184
+      button_0: -12965728
+      button_1: 196519208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

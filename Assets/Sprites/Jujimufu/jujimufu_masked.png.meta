@@ -1,22 +1,19 @@
 fileFormatVersion: 2
-guid: 0dfd0e19af47d465a80d7be93aa2592f
+guid: ac1c9b6f260764207864b2f7f5e9bb41
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7848158056508894098
-    second: new_joystick_0
+      213: -1303307729768477515
+    second: jujimufu_masked_0
   - first:
-      213: 6241209236075708970
-    second: new_joystick_1
+      213: -6872624026538335454
+    second: jujimufu_masked_1
   - first:
-      213: -9062024206437360522
-    second: new_joystick_2
+      213: 7667309001044877954
+    second: jujimufu_masked_2
   - first:
-      213: -1650899972234547416
-    second: new_joystick_3
-  - first:
-      213: 4313054250156393411
-    second: new_joystick_4
+      213: 4310053396089570896
+    second: jujimufu_masked_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -49,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -63,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -87,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -112,111 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: new_joystick_0
+      name: jujimufu_masked_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 800
-        height: 923
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 066df1b65a7c8447397d034a469ce748
-      internalID: 1407285262
+      spriteID: 5bc01266688b9ede0800000000000000
+      internalID: -1303307729768477515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_joystick_1
+      name: jujimufu_masked_1
       rect:
         serializedVersion: 2
-        x: 800
+        x: 32
         y: 0
-        width: 800
-        height: 923
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 541249e51f0be41cd967b4c9b923defb
-      internalID: -551633710
+      spriteID: 2232e5f4cd88f90a0800000000000000
+      internalID: -6872624026538335454
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_joystick_2
+      name: jujimufu_masked_2
       rect:
         serializedVersion: 2
-        x: 1600
+        x: 64
         y: 0
-        width: 800
-        height: 923
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 3c05897c10e1c458d8c58329b83e7199
-      internalID: 388765004
+      spriteID: 2826f6ec9e0c76a60800000000000000
+      internalID: 7667309001044877954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: new_joystick_3
+      name: jujimufu_masked_3
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 96
         y: 0
-        width: 800
-        height: 923
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 4172274c56bf24ec79ea443ac063af6f
-      internalID: -613745986
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: new_joystick_4
-      rect:
-        serializedVersion: 2
-        x: 3200
-        y: 0
-        width: 800
-        height: 923
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b5c5c7059a70d4f72854dbb53a5802ac
-      internalID: -62758609
+      spriteID: 05682e46ab260db30800000000000000
+      internalID: 4310053396089570896
       vertices: []
       indices: 
       edges: []
@@ -225,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 22883b3b11df647b68e99ee86d9added
+    spriteID: 5e4514a0099064a0f82ae61fbb48a1bd
     internalID: 0
     vertices: []
     indices: 
@@ -235,11 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      new_joystick_0: 1407285262
-      new_joystick_1: -551633710
-      new_joystick_2: 388765004
-      new_joystick_3: -613745986
-      new_joystick_4: -62758609
+      jujimufu_masked_0: -1303307729768477515
+      jujimufu_masked_1: -6872624026538335454
+      jujimufu_masked_2: 7667309001044877954
+      jujimufu_masked_3: 4310053396089570896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

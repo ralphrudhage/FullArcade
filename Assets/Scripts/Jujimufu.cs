@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Jujimufu : Player
 {
+    [SerializeField] private AudioClip maskSound;
     [SerializeField] AnimatorOverrideController horseController;
-    
+
     private RuntimeAnimatorController defaultController;
     private bool usingHorseController;
 
@@ -17,7 +18,7 @@ public class Jujimufu : Player
         base.Update();
         HandleInputActions();
     }
-    
+
     private void HandleInputActions()
     {
         if (InputActions.Up.triggered)
@@ -37,8 +38,7 @@ public class Jujimufu : Player
 
         if (InputActions.Button2.triggered)
         {
-            usingHorseController = !usingHorseController;
-            animator.runtimeAnimatorController = usingHorseController ? horseController : defaultController;
+            ToggleMask();
         }
 
         if (InputActions.Button3.triggered)
@@ -56,10 +56,29 @@ public class Jujimufu : Player
             Debug.Log("Button5");
         }
     }
-    
+
     private void FaceFront()
     {
         animator.SetBool("walking", false);
         animator.SetTrigger("idle_front");
+    }
+    
+    private void ToggleMask()
+    {
+        SoundManager.Instance.PlaySound(maskSound);
+        var trigger = usingHorseController ? "maskoff" : "maskon";
+        animator.SetTrigger(trigger);
+    }
+    
+    public void MaskOn()
+    {
+        animator.runtimeAnimatorController = horseController;
+        usingHorseController = true;
+    }
+
+    public void MaskOff()
+    {
+        animator.runtimeAnimatorController = defaultController;
+        usingHorseController = false;
     }
 }
