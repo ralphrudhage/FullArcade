@@ -11,8 +11,7 @@ public class Grizzly : Player
     [SerializeField] Animator zercherAnimator;
     [SerializeField] Animator sledpullAnimator;
     [SerializeField] GameObject sledpull;
-    
-    private bool facingRight;
+
     private bool isWalking;
     private bool isPulling;
     private bool playerEnabled = true;
