@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &27164969
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1516,8 +1516,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSound: {fileID: 8300000, guid: 2be8780d2569648c59470a55c894fe23, type: 3}
+  barbellAnimator: {fileID: 1883364724}
   backflipSound: {fileID: 8300000, guid: 19bc3565eb55c466d832c38224280f6a, type: 3}
   maskSound: {fileID: 8300000, guid: edff5e51bd8bd4ae4844bd007af94f85, type: 3}
+  deadliftSound: {fileID: 8300000, guid: 96e52301ebb484f1b9e445ec5b134842, type: 3}
   horseController: {fileID: 22100000, guid: 791948e26888c48a5a021c8b289b361a, type: 2}
 --- !u!95 &862339619
 Animator:
@@ -4536,8 +4538,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1883364722}
   - component: {fileID: 1883364723}
+  - component: {fileID: 1883364724}
+  - component: {fileID: 1883364725}
   m_Layer: 0
-  m_Name: barbell_0
+  m_Name: Barbell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4613,6 +4617,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1883364724
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883364721}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4a0adfebda1640e6b68075afce26ecf, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1883364725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883364721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f552082864e4445b19e380bd9bd882ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barbellSound: {fileID: 8300000, guid: 7ccb98f20622a4afbb7389b5eae2f11c, type: 3}
 --- !u!1 &2013416719
 GameObject:
   m_ObjectHideFlags: 0

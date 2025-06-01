@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Jujimufu : Player
 {
+    [SerializeField] private Animator barbellAnimator;
     [SerializeField] private AudioClip backflipSound;
     [SerializeField] private AudioClip maskSound;
+    [SerializeField] private AudioClip deadliftSound;
     [SerializeField] AnimatorOverrideController horseController;
 
     private RuntimeAnimatorController defaultController;
     private bool usingHorseController;
+    private bool isDeadlift;
 
     private void Start()
     {
@@ -24,12 +27,26 @@ public class Jujimufu : Player
     {
         if (InputActions.Up.triggered)
         {
-            Debug.Log("Up");
+            SoundManager.Instance.PlaySound(deadliftSound);
+            isDeadlift = true;
+            barbellAnimator.SetTrigger("lift");
+            animator.SetTrigger("deadlift");
+            spriteRenderer.sortingOrder = 10;
         }
 
         if (InputActions.Down.triggered)
         {
-            FaceFront();
+            if (isDeadlift)
+            {
+                isDeadlift = false;
+                barbellAnimator.SetTrigger("down");
+                animator.SetTrigger("down");
+                spriteRenderer.sortingOrder = 1;
+            }
+            else
+            {
+                FaceFront();
+            }
         }
 
         if (InputActions.Button1.triggered)
