@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Jujimufu : Player
 {
+    [SerializeField] private AudioClip backflipSound;
     [SerializeField] private AudioClip maskSound;
     [SerializeField] AnimatorOverrideController horseController;
 
@@ -33,7 +34,8 @@ public class Jujimufu : Player
 
         if (InputActions.Button1.triggered)
         {
-            Debug.Log("Button1");
+            SoundManager.Instance.PlaySound(backflipSound);
+            animator.SetTrigger("backflip");
         }
 
         if (InputActions.Button2.triggered)
