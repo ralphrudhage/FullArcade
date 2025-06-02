@@ -4,17 +4,22 @@ public class Jujimufu : Player
 {
     [SerializeField] private Animator barbellAnimator;
     [SerializeField] private AudioClip backflipSound;
+    [SerializeField] private AudioClip jumpSound;
     [SerializeField] private AudioClip maskSound;
     [SerializeField] private AudioClip deadliftSound;
     [SerializeField] AnimatorOverrideController horseController;
 
+    private Rigidbody2D rb;
     private RuntimeAnimatorController defaultController;
     private bool usingHorseController;
     private bool isDeadlift;
+    private float jumpForce = 6f;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         defaultController = animator.runtimeAnimatorController;
+        moveSpeed = 4f;
     }
 
     protected override void Update()
@@ -62,7 +67,10 @@ public class Jujimufu : Player
 
         if (InputActions.Button3.triggered)
         {
-            Debug.Log("Button3");
+            SoundManager.Instance.PlaySound(jumpSound);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            // animator.SetTrigger("jump");
+            isGrounded = false;
         }
 
         if (InputActions.Button4.triggered)
@@ -99,5 +107,10 @@ public class Jujimufu : Player
     {
         animator.runtimeAnimatorController = defaultController;
         usingHorseController = false;
+    }
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        isGrounded = true;
     }
 }

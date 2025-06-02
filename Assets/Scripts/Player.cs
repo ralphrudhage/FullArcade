@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] Text scoreText;
     [SerializeField] protected AudioClip walkSound;
 
     protected Animator animator;
@@ -11,10 +13,11 @@ public class Player : MonoBehaviour
     protected PlayerControls.ArcadeActions InputActions { get; set; }
 
     protected float stepTimer;
-    protected const float moveSpeed = 2f;
+    protected float moveSpeed = 2f;
     protected const float stepInterval = 0.2f;
     protected bool isMoving;
     protected bool facingRight;
+    protected bool isGrounded;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class Player : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        scoreText.text = "";
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         arcadeManager = FindAnyObjectByType<ArcadeManager>();

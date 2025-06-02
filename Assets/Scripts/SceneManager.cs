@@ -17,22 +17,19 @@ public class SceneManager : MonoBehaviour
     
     private void Start()
     {
-        Act1CutScene();
+        JujimufuScene();
     }
 
-    private void Act1CutScene()
+    private void JujimufuScene()
     {
         arcadeSceneFader.BlackScene();
 
         StartCoroutine(DelayedAction(3f,
             () => narrativeWriter.TextRow1("Meanwhile", "", 3f, GameUtils.lightYellow)));
         StartCoroutine(DelayedAction(8f, () => arcadeSceneFader.FadeIn()));
+        StartCoroutine(DelayedAction(8f, () => SoundManager.Instance.PlayMusic()));
     }
     
-    private void Act1GamePlay()
-    {
-    }
-
     private IEnumerator DelayedAction(float delay, Action method)
     {
         yield return new WaitForSeconds(delay);

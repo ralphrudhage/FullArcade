@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip currentSong;
     [SerializeField] private AudioSource music, sfx;
     
     public static SoundManager Instance;
@@ -19,7 +20,7 @@ public class SoundManager : MonoBehaviour
         }
     }
     
-    private void PlayMusic(AudioClip clip)
+    private void PlayAudioClip(AudioClip clip)
     {
         if (music.isPlaying)
         {
@@ -27,6 +28,18 @@ public class SoundManager : MonoBehaviour
         }
         
         music.clip = clip;
+        music.loop = true;
+        music.Play();
+    }
+    
+    public void PlayMusic()
+    {
+        if (music.isPlaying)
+        {
+            music.Stop();
+        }
+        
+        music.clip = currentSong;
         music.loop = true;
         music.Play();
     }
