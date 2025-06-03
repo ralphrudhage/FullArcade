@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Jujimufu : Player
@@ -9,17 +10,28 @@ public class Jujimufu : Player
     [SerializeField] private AudioClip deadliftSound;
     [SerializeField] AnimatorOverrideController horseController;
 
+    private ArcadeManager arcadeManager;
+    private PowerRack powerRack;
+    private CameraFollow cameraFollow;
+    private BoxCollider2D boxCollider2D;
     private Rigidbody2D rb;
     private RuntimeAnimatorController defaultController;
     private bool usingHorseController;
     private bool isDeadlift;
     private float jumpForce = 6f;
+    private bool isBenchpress;
+    private int currentScore;
 
     private void Start()
     {
+        arcadeManager = FindAnyObjectByType<ArcadeManager>();
+        powerRack = FindAnyObjectByType<PowerRack>();
+        cameraFollow = FindAnyObjectByType<CameraFollow>();
+        boxCollider2D = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         defaultController = animator.runtimeAnimatorController;
         moveSpeed = 4f;
+        StartCoroutine(DelayedAction(8f, () => scoreText.text = "SCORE: 0"));
     }
 
     protected override void Update()
@@ -33,10 +45,20 @@ public class Jujimufu : Player
         if (InputActions.Up.triggered)
         {
             SoundManager.Instance.PlaySound(deadliftSound);
-            isDeadlift = true;
-            barbellAnimator.SetTrigger("lift");
-            animator.SetTrigger("deadlift");
-            spriteRenderer.sortingOrder = 10;
+            if (isBenchpress)
+            {
+                powerRack.Press(false);
+            }
+            else
+            {
+                isDeadlift = true;
+                barbellAnimator.SetTrigger("lift");
+                animator.SetTrigger("deadlift");
+                spriteRenderer.sortingOrder = 10;
+                arcadeManager.SpawnFloatingText("+1", GameUtils.lightYellow, transform.position + new Vector3(0f, 1f, 0f));
+                currentScore += 1;
+                scoreText.text = "SCORE: " + currentScore;
+            }
         }
 
         if (InputActions.Down.triggered)
@@ -47,6 +69,10 @@ public class Jujimufu : Player
                 barbellAnimator.SetTrigger("down");
                 animator.SetTrigger("down");
                 spriteRenderer.sortingOrder = 1;
+            }
+            else if (isBenchpress)
+            {
+                powerRack.Press(true);
             }
             else
             {
@@ -75,7 +101,8 @@ public class Jujimufu : Player
 
         if (InputActions.Button4.triggered)
         {
-            Debug.Log("Button4");
+            cameraFollow.MoveDown();
+            boxCollider2D.isTrigger = true;
         }
 
         if (InputActions.Button5.triggered)
@@ -89,14 +116,14 @@ public class Jujimufu : Player
         animator.SetBool("walking", false);
         animator.SetTrigger("idle_front");
     }
-    
+
     private void ToggleMask()
     {
         SoundManager.Instance.PlaySound(maskSound);
         var trigger = usingHorseController ? "maskoff" : "maskon";
         animator.SetTrigger(trigger);
     }
-    
+
     public void MaskOn()
     {
         animator.runtimeAnimatorController = horseController;
@@ -108,9 +135,19 @@ public class Jujimufu : Player
         animator.runtimeAnimatorController = defaultController;
         usingHorseController = false;
     }
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         isGrounded = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("powerrack"))
+        {
+            boxCollider2D.isTrigger = false;
+            isBenchpress = true;
+            spriteRenderer.enabled = false;
+        }
     }
 }

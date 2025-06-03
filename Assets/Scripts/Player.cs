@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player : BaseManager
 {
-    [SerializeField] Text scoreText;
+    [SerializeField] protected Text scoreText;
     [SerializeField] protected AudioClip walkSound;
 
     protected Animator animator;

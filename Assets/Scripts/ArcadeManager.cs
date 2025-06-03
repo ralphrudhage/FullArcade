@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ArcadeManager : BaseManager
 {
+    [SerializeField] private GameObject popupPrefab;
+    [SerializeField] private Transform popupParent;
     [SerializeField] private List<Sprite> joystickSprites;
     [SerializeField] private List<Sprite> buttonSprites;
     [SerializeField] private Image joystick;
@@ -36,5 +38,18 @@ public class ArcadeManager : BaseManager
                 button2.sprite = buttonSprites[pressed ? 1 : 0];
                 break;
         }
+    }
+    
+    public void SpawnFloatingText(string param, Color textColor, Vector3 worldPosition)
+    {
+        var gameLabel = Instantiate(popupPrefab, popupParent);
+        gameLabel.transform.position = Camera.main.WorldToScreenPoint(worldPosition);
+
+        var texts = gameLabel.GetComponentsInChildren<Text>();
+        texts[0].text = param;
+        texts[1].color = textColor;
+        texts[1].text = param;
+
+        Destroy(gameLabel, 1);
     }
 }

@@ -18,15 +18,24 @@ public class SceneManager : MonoBehaviour
     private void Start()
     {
         JujimufuScene();
+        // Skip();
+    }
+
+    private void Skip()
+    {
+        arcadeSceneFader.gameObject.SetActive(false);
+        SoundManager.Instance.PlayMusic();
     }
 
     private void JujimufuScene()
     {
         arcadeSceneFader.BlackScene();
-
         StartCoroutine(DelayedAction(3f,
             () => narrativeWriter.TextRow1("Meanwhile", "", 3f, GameUtils.lightYellow)));
-        StartCoroutine(DelayedAction(8f, () => arcadeSceneFader.FadeIn()));
+        StartCoroutine(DelayedAction(8f, () =>
+        {
+            arcadeSceneFader.FadeIn();
+        }));
         StartCoroutine(DelayedAction(8f, () => SoundManager.Instance.PlayMusic()));
     }
     
