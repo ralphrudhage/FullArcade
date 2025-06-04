@@ -12,6 +12,7 @@ public class ArcadeManager : BaseManager
     [SerializeField] private Image joystick;
     [SerializeField] private Image button1;
     [SerializeField] private Image button2;
+    [SerializeField] private Image button3;
 
     public void SetJoystickDirection(string direction)
     {
@@ -36,6 +37,9 @@ public class ArcadeManager : BaseManager
                 break;
             case 2:
                 button2.sprite = buttonSprites[pressed ? 1 : 0];
+                break;
+            case 3:
+                button3.sprite = buttonSprites[pressed ? 1 : 0];
                 break;
         }
     }

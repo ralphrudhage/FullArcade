@@ -21,4 +21,9 @@ public class PowerRack : MonoBehaviour
     {
         spriteRenderer.sprite = status ? powerSprites[2] : powerSprites[1];
     }
+
+    public void Reset()
+    {
+        spriteRenderer.sprite = powerSprites[0];
+    }
 }

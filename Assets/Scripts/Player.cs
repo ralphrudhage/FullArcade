@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class Player : BaseManager
 {
-    [SerializeField] protected Text scoreText;
     [SerializeField] protected AudioClip walkSound;
 
     protected Animator animator;
@@ -28,7 +27,6 @@ public class Player : BaseManager
 
     protected virtual void OnEnable()
     {
-        scoreText.text = "";
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         arcadeManager = FindAnyObjectByType<ArcadeManager>();
@@ -63,14 +61,14 @@ public class Player : BaseManager
         }
     }
 
-    protected int GetMoveInput()
+    private int GetMoveInput()
     {
         if (InputActions.Right.IsPressed()) return 1;
         if (InputActions.Left.IsPressed()) return -1;
         return 0;
     }
 
-    protected void FaceRight(bool shouldFaceRight)
+    private void FaceRight(bool shouldFaceRight)
     {
         if (facingRight != shouldFaceRight)
         {
@@ -94,6 +92,7 @@ public class Player : BaseManager
 
         arcadeManager?.SetButtonState(1, InputActions.Button1.IsPressed());
         arcadeManager?.SetButtonState(2, InputActions.Button2.IsPressed());
+        arcadeManager?.SetButtonState(3, InputActions.Button3.IsPressed());
     }
 
     protected void FlipDirection()
